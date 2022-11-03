@@ -1,3 +1,5 @@
+<a class="box-details-back" routerLink="">Back</a>
+
 <div *ngIf="box" class="box-details">
   <h2 class="box-details-title" title="{{ box.node.name }}">
     {{ box.node.name }}
@@ -5,7 +7,7 @@
   <img
     src="{{ box.node.iconUrl }}"
     alt="{{ box.node.iconUrl }}"
-    [ngClass]="{ 'animate-bounce': bounce }"
+    [ngClass]="{ 'animate-bounce': loading }"
   />
   <div class="box-details-price">
     <svg

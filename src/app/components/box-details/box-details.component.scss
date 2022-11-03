@@ -1,3 +1,7 @@
+.box-details-back {
+  @apply absolute left-6 top-0 p-1 flex text-white font-bold bg-red-400 rounded;
+}
+
 .box-details {
   @apply relative w-96 h-96 p-4 mx-auto my-12 bg-stone-200 rounded overflow-hidden cursor-pointer;
 

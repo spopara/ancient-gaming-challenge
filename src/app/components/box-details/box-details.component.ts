@@ -12,7 +12,7 @@ import { Box } from 'src/app/models/box';
 export class BoxDetailsComponent implements OnInit, OnDestroy {
   private readonly subs = new Subscription();
   box: Box | null = null;
-  bounce = false;
+  loading = false;
 
   constructor(private boxService: BoxService, private router: Router) {}
 
@@ -33,6 +33,26 @@ export class BoxDetailsComponent implements OnInit, OnDestroy {
   }
 
   handleOpen() {
-    this.bounce = true;
+    if (!this.box) {
+      return;
+    }
+
+    this.subs.add(
+      this.boxService.openBox(this.box.node.id).subscribe((response) => {
+        this.loading = response.loading;
+
+        if (response.data) {
+          const items = response.data.openBox.boxOpenings
+            .map(
+              (bo) =>
+                `• ${bo.itemVariant?.name || bo.itemVariant?.id} (${
+                  bo.itemVariant?.value
+                })`
+            )
+            .join('\n');
+          window.alert(`You received following items:\n${items}`);
+        }
+      })
+    );
   }
 }
