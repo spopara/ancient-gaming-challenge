@@ -1,7 +1,13 @@
-<div class="box-card" (click)="handleClick()">
-  <h2 class="box-title" title="{{ box.node.name }}">{{ box.node.name }}</h2>
-  <img src="{{ box.node.iconUrl }}" alt="{{ box.node.iconUrl }}" />
-  <div class="box-price">
+<div *ngIf="box" class="box-details">
+  <h2 class="box-details-title" title="{{ box.node.name }}">
+    {{ box.node.name }}
+  </h2>
+  <img
+    src="{{ box.node.iconUrl }}"
+    alt="{{ box.node.iconUrl }}"
+    [ngClass]="{ 'animate-bounce': bounce }"
+  />
+  <div class="box-details-price">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
@@ -18,4 +24,5 @@
     </svg>
     {{ box.node.cost }}
   </div>
+  <button class="box-details-open-button" (click)="handleOpen()">Open</button>
 </div>

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Apollo } from 'apollo-angular';
+import { BoxService } from 'src/app/box.service';
 import { Box } from 'src/app/models/box';
-import { BOX_LIST } from '../../graphql/graphql.queries';
 
 @Component({
   selector: 'app-box-list',
@@ -11,16 +10,12 @@ import { BOX_LIST } from '../../graphql/graphql.queries';
 export class BoxListComponent implements OnInit {
   boxes: Box[] = [];
 
-  constructor(private apollo: Apollo) {}
+  constructor(private boxService:BoxService) {}
 
   ngOnInit(): void {
-    this.apollo
-      .query({
-        query: BOX_LIST,
-      })
+    this.boxService.getBoxes()
       .subscribe((response: any) => {
         this.boxes = response?.data?.boxes?.edges || [];
-        console.log(response);
       });
   }
 }
