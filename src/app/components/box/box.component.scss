@@ -1,0 +1,11 @@
+.box-card {
+  @apply relative w-48 h-56 p-2 bg-stone-200 rounded overflow-hidden cursor-pointer;
+
+  .box-title {
+    @apply font-bold text-center whitespace-nowrap text-ellipsis overflow-hidden;
+  }
+
+  .box-price {
+    @apply absolute right-2 bottom-2 p-1 flex text-white font-bold bg-purple-400 rounded;
+  }
+}

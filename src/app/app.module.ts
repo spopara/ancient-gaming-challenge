@@ -6,9 +6,10 @@ import { AppComponent } from './app.component';
 import { BoxListComponent } from './components/box-list/box-list.component';
 import { HeaderComponent } from './components/header/header.component';
 import { GraphQLModule } from './graphql.module';
+import { BoxComponent } from './components/box/box.component';
 
 @NgModule({
-  declarations: [AppComponent, BoxListComponent, HeaderComponent],
+  declarations: [AppComponent, BoxListComponent, HeaderComponent, BoxComponent],
   imports: [BrowserModule, AppRoutingModule, GraphQLModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
