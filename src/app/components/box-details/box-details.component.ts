@@ -1,4 +1,10 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { SteamService } from 'src/app/box.service';
@@ -8,13 +14,18 @@ import { Box } from 'src/app/models/box';
   selector: 'app-box-details',
   templateUrl: './box-details.component.html',
   styleUrls: ['./box-details.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BoxDetailsComponent implements OnInit, OnDestroy {
   private readonly subs = new Subscription();
   box: Box | null = null;
   loading = false;
 
-  constructor(private steamService: SteamService, private router: Router) {}
+  constructor(
+    private steamService: SteamService,
+    private router: Router,
+    private changeDetection: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
     this.subs.add(
@@ -22,7 +33,6 @@ export class BoxDetailsComponent implements OnInit, OnDestroy {
         if (!box) {
           this.router.navigate(['']);
         }
-
         this.box = box;
       })
     );
@@ -51,6 +61,7 @@ export class BoxDetailsComponent implements OnInit, OnDestroy {
             )
             .join('\n');
           window.alert(`You received following items:\n${items}`);
+          this.changeDetection.markForCheck();
         }
       })
     );

@@ -1,4 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy, Component,
+  Input,
+  OnInit
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { SteamService } from 'src/app/box.service';
 import { Box } from 'src/app/models/box';
@@ -7,11 +11,15 @@ import { Box } from 'src/app/models/box';
   selector: 'app-box',
   templateUrl: './box.component.html',
   styleUrls: ['./box.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BoxComponent implements OnInit {
   @Input() box!: Box;
 
-  constructor(private router: Router, private steamService: SteamService) {}
+  constructor(
+    private router: Router,
+    private steamService: SteamService
+  ) {}
 
   ngOnInit(): void {}
 
