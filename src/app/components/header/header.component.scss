@@ -1,0 +1,19 @@
+header {
+  @apply w-full h-16 py-2 px-4 flex justify-between bg-red-400;
+
+  .logo {
+    @apply w-12 h-12 rounded-full overflow-hidden;
+  }
+
+  .controls {
+    @apply flex justify-end items-center gap-12 text-white;
+
+    .control {
+      @apply text-center;
+
+      svg {
+        @apply inline-block;
+      }
+    }
+  }
+}

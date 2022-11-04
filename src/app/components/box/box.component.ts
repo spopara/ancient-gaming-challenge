@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { BoxService } from 'src/app/box.service';
+import { SteamService } from 'src/app/box.service';
 import { Box } from 'src/app/models/box';
 
 @Component({
@@ -11,12 +11,12 @@ import { Box } from 'src/app/models/box';
 export class BoxComponent implements OnInit {
   @Input() box!: Box;
 
-  constructor(private router: Router, private boxService: BoxService) {}
+  constructor(private router: Router, private steamService: SteamService) {}
 
   ngOnInit(): void {}
 
   handleClick() {
-    this.boxService.selectBox(this.box);
+    this.steamService.selectBox(this.box);
     this.router.navigate(['/box-details']);
   }
 }

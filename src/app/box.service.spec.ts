@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { BoxService } from './box.service';
+import { SteamService } from './box.service';
 
 describe('BoxService', () => {
-  let service: BoxService;
+  let service: SteamService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(BoxService);
+    service = TestBed.inject(SteamService);
   });
 
   it('should be created', () => {

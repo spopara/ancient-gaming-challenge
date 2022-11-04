@@ -1,4 +1,7 @@
 <app-header></app-header>
-<main>
+<main *ngIf="loggedIn">
   <router-outlet></router-outlet>
 </main>
+<p *ngIf="!loggedIn" class="info-message">
+  Please use the "Sign in" link to login into Steam and refresh this page.
+</p>

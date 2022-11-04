@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { BoxService } from 'src/app/box.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { SteamService } from 'src/app/box.service';
 import { Box } from 'src/app/models/box';
 
 @Component({
@@ -7,15 +8,21 @@ import { Box } from 'src/app/models/box';
   templateUrl: './box-list.component.html',
   styleUrls: ['./box-list.component.scss'],
 })
-export class BoxListComponent implements OnInit {
+export class BoxListComponent implements OnInit, OnDestroy {
+  private readonly subs = new Subscription();
   boxes: Box[] = [];
 
-  constructor(private boxService:BoxService) {}
+  constructor(private steamService: SteamService) {}
 
   ngOnInit(): void {
-    this.boxService.getBoxes()
-      .subscribe((response: any) => {
+    this.subs.add(
+      this.steamService.getBoxes().subscribe((response: any) => {
         this.boxes = response?.data?.boxes?.edges || [];
-      });
+      })
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.subs.unsubscribe();
   }
 }

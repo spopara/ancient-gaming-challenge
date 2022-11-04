@@ -1,3 +1,7 @@
 main {
   @apply relative;
 }
+
+.info-message {
+  @apply mx-auto my-16 p-4 w-fit border-2 border-red-300 rounded;
+}

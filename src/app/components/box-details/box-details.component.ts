@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { BoxService } from 'src/app/box.service';
+import { SteamService } from 'src/app/box.service';
 import { Box } from 'src/app/models/box';
 
 @Component({
@@ -14,11 +14,11 @@ export class BoxDetailsComponent implements OnInit, OnDestroy {
   box: Box | null = null;
   loading = false;
 
-  constructor(private boxService: BoxService, private router: Router) {}
+  constructor(private steamService: SteamService, private router: Router) {}
 
   ngOnInit(): void {
     this.subs.add(
-      this.boxService.selectedBox$.subscribe((box: Box | null) => {
+      this.steamService.selectedBox$.subscribe((box: Box | null) => {
         if (!box) {
           this.router.navigate(['']);
         }
@@ -38,7 +38,7 @@ export class BoxDetailsComponent implements OnInit, OnDestroy {
     }
 
     this.subs.add(
-      this.boxService.openBox(this.box.node.id).subscribe((response) => {
+      this.steamService.openBox(this.box.node.id).subscribe((response) => {
         this.loading = response.loading;
 
         if (response.data) {
